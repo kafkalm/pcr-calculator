@@ -81,7 +81,7 @@ def calculate():
         map_limit(map_armory,level)
     armory = armoryChoose.get()
     res = cal_times(algorithm,map_armory,needs,armory)
-
+    res_str = ""
     if algorithm == '地图效率':
         res_str = f'所需次数 : {res[1]}次\n'
         for map,times in res[0].items():
@@ -93,6 +93,11 @@ def calculate():
     result.delete('1.0',END)
     result.insert(INSERT,res_str)
 
+
+def output():
+    res = result.get("1.0",END)
+    with open("output.txt","w",encoding="utf-8") as f:
+        f.write(res)
 
 
 root = Tk()
@@ -126,7 +131,7 @@ map.place(x=90,y=549)
 Button(root,text="选择",width = 12,command = choose_need).place(x=380,y=515)
 Button(root,text="选择",width = 12,command = choose_map).place(x=380,y=545)
 Button(root,text="计算",width = 20,command = calculate).place(x=20,y=580)
-Button(root,text="导出",width = 20,command = calculate).place(x=180,y=580)
+Button(root,text="导出",width = 20,command = output).place(x=180,y=580)
 
 
 armoryBox = ttk.Combobox(root,textvariable=armoryChoose)
