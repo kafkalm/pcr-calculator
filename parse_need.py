@@ -14,7 +14,7 @@ import os
 def parse_need(filename:str) -> bool:
     if os.path.exists(filename):
         try:
-            with open('need.html','r',encoding='utf-8') as f:
+            with open(filename,'r',encoding='utf-8') as f:
                 content = f.read()
                 names = re.findall('<h6.*?>(.*?)<',content,re.M)
                 needs = re.findall('<span class="badge badge-danger">(\d+)<',content,re.M)
